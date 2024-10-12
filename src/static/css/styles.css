@@ -1,0 +1,101 @@
+/* Basic styling for the telemetry overlay */
+.telemetry-container {
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    padding: 10px;
+    width: 550px; /* Increased width to fit the larger steering wheel */
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+.telemetry-content {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+#telemetry-graph {
+    background: black;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+/* Positioning bars next to the canvas in a horizontal row */
+.telemetry-bars {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 10px;
+    width: 96px; /* Fixed width for the container (3 bars * 28px + 2 gaps) */
+    height: 80px; /* Fixed height matching max bar height */
+    position: relative;
+}
+
+.bar {
+    width: 28px; /* Reduced width */
+    height: 100%; /* Set to full height of telemetry-bars container */
+    border: 1px solid #333;
+    background: rgba(0, 0, 0, 0.3);
+    position: relative;
+    text-align: center;
+    font-size: 10px;
+    color: white;
+    overflow: hidden;
+}
+
+/* Fill section that grows from the bottom up */
+.bar-fill {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: currentColor;
+}
+
+/* Separate bars by 2 pixels, except for the last one */
+.bar:not(:last-child) {
+    margin-right: 2px;
+}
+
+#clutch-bar { color: blue; }
+#brake-bar { color: red; }
+#throttle-bar { color: green; }
+
+/* Right-side container for gear, steering wheel, and speed */
+.telemetry-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+}
+
+/* Arrange gear and steering wheel side by side */
+.gear-steering-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px; /* Space between steering wheel and speed */
+}
+
+#gear-display {
+    font-size: 36px; /* Large font for gear */
+    font-weight: bold;
+    color: white;
+    font-family: 'Helvetica', sans-serif;
+    line-height: 1; /* Tighter line height */
+    text-align: center;
+    margin-right: 10px; /* Space between gear and steering wheel */
+}
+
+.steering-wheel-icon {
+    max-width: 120px; /* Larger size for better fit */
+    max-height: 120px;
+    transform-origin: center;
+    transition: transform 0.05s linear; /* Smooth transition for angle updates */
+}
+
+#speed-display {
+    font-size: 18px;
+    color: #ccc;
+    font-family: 'Helvetica', sans-serif;
+    text-align: center;
+}

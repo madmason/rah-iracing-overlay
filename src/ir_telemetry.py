@@ -1,7 +1,5 @@
 import irsdk
 import time
-import json
-from flask_socketio import SocketIO
 
 class State:
     ir_connected = False
@@ -11,7 +9,7 @@ class IRTelemetry:
     def __init__(self, socketio):
         self.ir = irsdk.IRSDK()
         self.state = State()
-        self.socketio = socketio
+        self.socketio = socketio  # Accept SocketIO instance
 
     def check_iracing(self):
         if self.state.ir_connected and not (self.ir.is_initialized and self.ir.is_connected):
@@ -22,15 +20,29 @@ class IRTelemetry:
             self.state.ir_connected = True
             print('irsdk connected')
 
-    def retrieve_speed(self):
+    def retrieve_data(self):
         self.ir.freeze_var_buffer_latest()
-        speed = self.ir['Speed']
-        if speed:
-            self.socketio.emit('speed_update', {'speed': speed})
+        
+        # Retrieve each variable from iRacing
+        speed = self.ir['Speed'] * 3.6  # Convert speed to km/h
+        steering_wheel_angle = self.ir['SteeringWheelAngle']
+        brake = self.ir['Brake']
+        throttle = self.ir['Throttle']
+        clutch = 1 - self.ir['Clutch']  # Invert clutch value
+        gear = self.ir['Gear']
+        
+        self.socketio.emit('telemetry_update', {
+            'speed': speed,
+            'steering_wheel_angle': steering_wheel_angle,
+            'brake': brake,
+            'throttle': throttle,
+            'clutch': clutch,
+            'gear': gear
+        })
 
     def run(self):
         while True:
             self.check_iracing()
             if self.state.ir_connected:
-                self.retrieve_speed()
-            time.sleep(0.05)
+                self.retrieve_data()
+            time.sleep(0.02)  # 50 Hz update rate

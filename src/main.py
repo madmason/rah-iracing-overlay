@@ -1,12 +1,10 @@
 import threading
-from ir_webapp import socketio, app, telemetry
-
-def start_telemetry():
-    telemetry.run()
+from ir_telemetry import IRTelemetry
+from ir_webapp import IRWebApp
 
 if __name__ == '__main__':
-    telemetry_thread = threading.Thread(target=start_telemetry)
+    web_app = IRWebApp()
+    telemetry = IRTelemetry(web_app.socketio)
+    telemetry_thread = threading.Thread(target=telemetry.run, daemon=True)
     telemetry_thread.start()
-
-    print('Starting server...')
-    socketio.run(app, host='127.0.0.1', port=8080)
+    web_app.run()
