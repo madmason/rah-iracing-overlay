@@ -14,5 +14,5 @@ class IRWebApp:
         def index():
             return render_template('overlay.html')
 
-    def run(self, host="127.0.0.1", port=8080, debug=True):
+    def run(self, host="127.0.0.1", port=8085, debug=True):
         self.socketio.run(self.app, host=host, port=port, debug=debug)

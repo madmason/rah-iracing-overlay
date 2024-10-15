@@ -13,7 +13,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Listen for telemetry updates
     socket.on('telemetry_update', function(data) {
-        document.getElementById('gear-display').innerText = data.gear;
+        // Check gear value and display "N" for 0, "R" for -1, or the actual gear number otherwise
+        let gearDisplay = data.gear === 0 ? "N" : data.gear === -1 ? "R" : data.gear;
+        document.getElementById('gear-display').innerText = gearDisplay;
+
+        // Update speed display
         document.getElementById('speed-display').innerText = `${data.speed.toFixed(0)} kph`;
         
         // Update throttle, brake, clutch bar fill heights

@@ -12,28 +12,29 @@
         <div class="telemetry-content">
             <!-- Canvas for graph lines -->
             <canvas id="telemetry-graph" width="300" height="100"></canvas>
+    
             <!-- Throttle, Brake, and Clutch bars positioned to the right of the graph -->
             <div class="telemetry-bars">
                 <div id="clutch-bar" class="bar">
                     <div class="bar-fill" id="clutch-fill"></div>
-                    Clutch
                 </div>
                 <div id="brake-bar" class="bar">
                     <div class="bar-fill" id="brake-fill"></div>
-                    Brake
                 </div>
                 <div id="throttle-bar" class="bar">
                     <div class="bar-fill" id="throttle-fill"></div>
-                    Throttle
                 </div>
             </div>
-            <!-- Right-side display with gear and steering wheel -->
+    
+            <!-- Right-side display with gear, speed, and steering wheel -->
             <div class="telemetry-right">
                 <div class="gear-steering-container">
-                    <div id="gear-display" class="data-item">4</div>
+                    <div class="gear-speed-container">
+                        <div id="gear-display">4</div>
+                        <div id="speed-display">183 kph</div>
+                    </div>
                     <img src="/static/img/steering_wheel.png" alt="Steering Wheel" id="steering-wheel" class="steering-wheel-icon">
                 </div>
-                <div id="speed-display" class="data-item">183 kph</div>
             </div>
         </div>
     </div>

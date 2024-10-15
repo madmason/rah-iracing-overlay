@@ -1,23 +1,26 @@
 /* Basic styling for the telemetry overlay */
 .telemetry-container {
-    background: rgba(0, 0, 0, 0.7);
-    border-radius: 10px;
-    padding: 10px;
-    width: 550px; /* Increased width to fit the larger steering wheel */
-    color: white;
+    background: rgba(15, 15, 15, 0.9); /* Darker background */
+    border-radius: 12px;
+    padding: 12px;
+    width: 600px;
+    color: #f1f1f1;
     font-family: Arial, sans-serif;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
 }
 
 .telemetry-content {
     display: flex;
-    align-items: center;
+    align-items: center; /* Center items vertically in telemetry-container */
     position: relative;
+    height: 100%; /* Ensures full height for proper vertical centering */
 }
 
 #telemetry-graph {
-    background: black;
+    background: rgba(30, 30, 30, 0.6); /* Increased transparency for telemetry graph */
     border-radius: 5px;
-    margin: 10px 0;
+    margin: 10px 3px 10px 0; /* 3px margin-right to separate from bars */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 /* Positioning bars next to the canvas in a horizontal row */
@@ -25,22 +28,27 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-left: 10px;
-    width: 96px; /* Fixed width for the container (3 bars * 28px + 2 gaps) */
-    height: 80px; /* Fixed height matching max bar height */
-    position: relative;
+    width: 80px;
+    height: 100px;
+    margin-left: 3px; /* Ensure bars are separated by 3px */
 }
 
 .bar {
-    width: 28px; /* Reduced width */
-    height: 100%; /* Set to full height of telemetry-bars container */
+    width: 25px;
+    height: 100%;
+    border-radius: 4px;
     border: 1px solid #333;
-    background: rgba(0, 0, 0, 0.3);
     position: relative;
     text-align: center;
     font-size: 10px;
     color: white;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding-bottom: 5px;
+    font-weight: bold;
 }
 
 /* Fill section that grows from the bottom up */
@@ -49,53 +57,68 @@
     bottom: 0;
     width: 100%;
     background: currentColor;
+    border-radius: 4px;
+    transition: height 0.01s ease-in-out;
 }
 
-/* Separate bars by 2 pixels, except for the last one */
 .bar:not(:last-child) {
     margin-right: 2px;
 }
 
+/* Match colors with the graph lines */
 #clutch-bar { color: blue; }
 #brake-bar { color: red; }
-#throttle-bar { color: green; }
+#throttle-bar { color: rgb(0, 201, 0); }
 
-/* Right-side container for gear, steering wheel, and speed */
+/* Right-side container for gear, steering wheel, and speed, filling remaining space */
 .telemetry-right {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-left: 10px;
+    flex-grow: 1;
+    padding-left: 10px;
 }
 
-/* Arrange gear and steering wheel side by side */
+/* Arrange gear, speed, and steering wheel side by side */
 .gear-steering-container {
     display: flex;
-    align-items: center;
-    margin-bottom: 10px; /* Space between steering wheel and speed */
+    align-items: center; /* Vertically center items in telemetry-container */
+    justify-content: center;
+    gap: 10px; /* Space between gear/speed and steering wheel */
 }
 
+.gear-speed-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Gear display */
 #gear-display {
-    font-size: 36px; /* Large font for gear */
+    font-size: 42px;
     font-weight: bold;
     color: white;
     font-family: 'Helvetica', sans-serif;
-    line-height: 1; /* Tighter line height */
+    line-height: 1;
     text-align: center;
-    margin-right: 10px; /* Space between gear and steering wheel */
+    transition: color 0.2s ease-in-out;
+    align-self: center; /* Vertically aligns gear in telemetry-container */
 }
 
-.steering-wheel-icon {
-    max-width: 120px; /* Larger size for better fit */
-    max-height: 120px;
-    transform-origin: center;
-    transition: transform 0.05s linear; /* Smooth transition for angle updates */
-}
-
+/* Speed display positioned below gear */
 #speed-display {
     font-size: 18px;
-    color: #ccc;
+    color: #ddd;
     font-family: 'Helvetica', sans-serif;
     text-align: center;
+    margin-top: 5px; /* Slight spacing below gear */
+}
+
+/* Centered steering wheel with larger size */
+.steering-wheel-icon {
+    max-width: 100px;
+    max-height: 100px;
+    transform-origin: center;
+    transition: transform 0.05s linear;
 }
