@@ -1,6 +1,5 @@
-/* Basic styling for the telemetry overlay */
 .telemetry-container {
-    background: rgba(15, 15, 15, 0.9); /* Darker background */
+    background: rgba(15, 15, 15, 0.9);
     border-radius: 12px;
     padding: 12px;
     width: 600px;
@@ -11,26 +10,25 @@
 
 .telemetry-content {
     display: flex;
-    align-items: center; /* Center items vertically in telemetry-container */
+    align-items: center;
     position: relative;
-    height: 100%; /* Ensures full height for proper vertical centering */
+    height: 100%;
 }
 
 #telemetry-graph {
-    background: rgba(30, 30, 30, 0.6); /* Increased transparency for telemetry graph */
+    background: rgba(30, 30, 30, 0.6);
     border-radius: 5px;
-    margin: 10px 3px 10px 0; /* 3px margin-right to separate from bars */
+    margin: 10px 3px 10px 0;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
-/* Positioning bars next to the canvas in a horizontal row */
 .telemetry-bars {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     width: 80px;
     height: 100px;
-    margin-left: 3px; /* Ensure bars are separated by 3px */
+    margin-left: 10px;
 }
 
 .bar {
@@ -51,7 +49,6 @@
     font-weight: bold;
 }
 
-/* Fill section that grows from the bottom up */
 .bar-fill {
     position: absolute;
     bottom: 0;
@@ -65,12 +62,10 @@
     margin-right: 2px;
 }
 
-/* Match colors with the graph lines */
 #clutch-bar { color: blue; }
 #brake-bar { color: red; }
 #throttle-bar { color: rgb(0, 201, 0); }
 
-/* Right-side container for gear, steering wheel, and speed, filling remaining space */
 .telemetry-right {
     display: flex;
     flex-direction: column;
@@ -80,12 +75,12 @@
     padding-left: 10px;
 }
 
-/* Arrange gear, speed, and steering wheel side by side */
 .gear-steering-container {
     display: flex;
-    align-items: center; /* Vertically center items in telemetry-container */
+    align-items: center;
     justify-content: center;
-    gap: 10px; /* Space between gear/speed and steering wheel */
+    gap: 10px;
+    width: 100%;
 }
 
 .gear-speed-container {
@@ -94,7 +89,6 @@
     align-items: center;
 }
 
-/* Gear display */
 #gear-display {
     font-size: 42px;
     font-weight: bold;
@@ -102,20 +96,19 @@
     font-family: 'Helvetica', sans-serif;
     line-height: 1;
     text-align: center;
-    transition: color 0.2s ease-in-out;
-    align-self: center; /* Vertically aligns gear in telemetry-container */
+    width: 80px;
 }
 
-/* Speed display positioned below gear */
 #speed-display {
     font-size: 18px;
     color: #ddd;
     font-family: 'Helvetica', sans-serif;
     text-align: center;
-    margin-top: 5px; /* Slight spacing below gear */
+    margin-top: 5px;
+    width: 80px;
+    display: inline-block;
 }
 
-/* Centered steering wheel with larger size */
 .steering-wheel-icon {
     max-width: 100px;
     max-height: 100px;

@@ -2,18 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Telemetry Overlay</title>
+    <title>RAH Telemetry Overlay</title>
     <link rel="stylesheet" href="/static/css/styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.min.js"></script>
+    <script src="/static/js/socket.io.min.js"></script>
     <script src="/static/js/script.js"></script>
 </head>
 <body>
     <div class="telemetry-container">
         <div class="telemetry-content">
-            <!-- Canvas for graph lines -->
             <canvas id="telemetry-graph" width="300" height="100"></canvas>
     
-            <!-- Throttle, Brake, and Clutch bars positioned to the right of the graph -->
             <div class="telemetry-bars">
                 <div id="clutch-bar" class="bar">
                     <div class="bar-fill" id="clutch-fill"></div>
@@ -26,7 +24,6 @@
                 </div>
             </div>
     
-            <!-- Right-side display with gear, speed, and steering wheel -->
             <div class="telemetry-right">
                 <div class="gear-steering-container">
                     <div class="gear-speed-container">

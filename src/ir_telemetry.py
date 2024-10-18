@@ -7,11 +7,18 @@ class State:
 
 class IRTelemetry:
     def __init__(self, socketio):
+        """
+        Initialize the IRTelemetry class with an IRSDK instance and a SocketIO instance.
+        """
         self.ir = irsdk.IRSDK()
         self.state = State()
         self.socketio = socketio  # Accept SocketIO instance
 
     def check_iracing(self):
+        """
+        Check the connection status with iRacing.
+        Connect if not already connected, and disconnect if the connection is lost.
+        """
         if self.state.ir_connected and not (self.ir.is_initialized and self.ir.is_connected):
             self.state.ir_connected = False
             self.ir.shutdown()
@@ -21,9 +28,11 @@ class IRTelemetry:
             print('irsdk connected')
 
     def retrieve_data(self):
+        """
+        Retrieve telemetry data from iRacing and emit it through SocketIO.
+        """
         self.ir.freeze_var_buffer_latest()
         
-        # Retrieve each variable from iRacing
         speed = self.ir['Speed'] * 3.6  # Convert speed to km/h
         steering_wheel_angle = self.ir['SteeringWheelAngle']
         brake = self.ir['Brake']
@@ -41,6 +50,9 @@ class IRTelemetry:
         })
 
     def run(self):
+        """
+        Run the telemetry update loop, checking for connection and sending data at 50 Hz.
+        """
         while True:
             self.check_iracing()
             if self.state.ir_connected:
