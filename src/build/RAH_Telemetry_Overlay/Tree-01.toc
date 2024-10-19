@@ -1,0 +1,5 @@
+('templates',
+ 'templates',
+ [],
+ 'DATA',
+ [('templates\\overlay.html', 'templates\\overlay.html', 'DATA')])

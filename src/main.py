@@ -1,5 +1,13 @@
-import os
+import io
 import sys
+
+# Disable logging to prevent output in the GUI
+class dummyOut:
+    def write(self, data):
+        pass
+sys.stderr = dummyOut()
+
+import os
 from PIL import Image, ImageTk  # Use PIL for image resizing while keeping aspect ratio
 import tkinter as tk
 import threading
@@ -7,7 +15,9 @@ from ir_telemetry import IRTelemetry
 from ir_webapp import IRWebApp
 import time
 import webbrowser  # For opening the URLs in a browser
-
+import pkgutil
+import logging
+import multiprocessing
 
 class TelemetryInterface:
     def __init__(self, root):
@@ -29,8 +39,27 @@ class TelemetryInterface:
 
         # Use Roboto font with the same size for all elements
         self.font_style = ("Roboto", 12)
+        self.root.protocol("WM_DELETE_WINDOW", self.on_closing)
 
         self.setup_ui()
+        
+    def start_webapp(self):
+        """ Start the Flask web server in a separate process. """
+        def run_server():
+            try:
+                self.web_app.run(host="127.0.0.1", port=self.port, debug=False)
+            except Exception as e:
+                logging.error("Exception occurred in web server process", exc_info=True)
+
+        self.webapp_process = multiprocessing.Process(target=run_server)
+        self.webapp_process.start()
+        
+    def on_closing(self):
+        """ Handle application closing """
+        self.is_running = False
+        if hasattr(self, 'webapp_process') and self.webapp_process.is_alive():
+            self.webapp_process.terminate()
+        self.root.destroy()
 
     def setup_ui(self):
         """
@@ -71,14 +100,15 @@ class TelemetryInterface:
         icon_frame = tk.Frame(right_frame, bg="#F5F5F5")
         icon_frame.pack(pady=0)
 
-        self.add_social_media_icon(icon_frame, self.resource_path("static/img/twitch_logo.png"), "https://www.twitch.tv/dizca")
-        self.add_social_media_icon(icon_frame, self.resource_path("static/img/github_logo.png"), "https://github.com/RaulArcos")
-        self.add_social_media_icon(icon_frame, self.resource_path("static/img/linkedin_logo.png"), "https://www.linkedin.com/in/ra%C3%BAl-arcos-herrera-b11514175/")
+        self.add_social_media_icon(icon_frame, 'static/img/twitch_logo.png', "https://www.twitch.tv/dizca")
+        self.add_social_media_icon(icon_frame, 'static/img/github_logo.png', "https://github.com/RaulArcos")
+        self.add_social_media_icon(icon_frame, 'static/img/linkedin_logo.png', "https://www.linkedin.com/in/ra%C3%BAl-arcos-herrera-b11514175/")
 
+        # For the PayPal icon
         paypal_frame = tk.Frame(right_frame, bg="#F5F5F5")
         paypal_frame.pack(pady=0, padx=50, fill="both", expand=True)
 
-        self.add_social_media_icon(paypal_frame, self.resource_path("static/img/paypal_logo.png"), "https://paypal.me/raularcosherrera")
+        self.add_social_media_icon(paypal_frame, 'static/img/paypal_logo.png', "https://paypal.me/raularcosherrera")
 
         coffee_label = tk.Label(paypal_frame, text="Coffee? ;)", font=self.font_style, bg="#F5F5F5", fg="#37474F")
         coffee_label.pack(side="left", padx=10)
@@ -93,16 +123,30 @@ class TelemetryInterface:
 
     def add_social_media_icon(self, parent, icon_path, url):
         """ Helper function to add clickable social media icons as images. """
-        img = Image.open(icon_path)
+        full_icon_path = self.resource_path(icon_path)
+        try:
+            with open(full_icon_path, 'rb') as f:
+                img_data = f.read()
+            img = Image.open(io.BytesIO(img_data))
+        except Exception as e:
+            print(f"Error opening image {full_icon_path}: {e}")
+            return  # or handle the error as needed
+
         aspect_ratio = img.width / img.height
         new_width = int(50 * aspect_ratio)
-        img_resized = img.resize((new_width, 50), Image.Resampling.LANCZOS)  # Updated to LANCZOS
+        try:
+            resample_filter = Image.Resampling.LANCZOS
+        except AttributeError:
+            resample_filter = Image.LANCZOS
+        img_resized = img.resize((new_width, 50), resample=resample_filter)
+
         icon = ImageTk.PhotoImage(img_resized)
 
         label = tk.Label(parent, image=icon, cursor="hand2", bg="#F5F5F5")
         label.image = icon  # Keep a reference to the image to prevent garbage collection
         label.pack(side="left", padx=10)
         label.bind("<Button-1>", lambda e: webbrowser.open(url))
+
 
     def update_status(self, status):
         """ Update the status label based on the current state. """
@@ -115,7 +159,7 @@ class TelemetryInterface:
 
     def start_webapp(self):
         """ Start the Flask web server in a separate thread. """
-        self.web_app.run(host="127.0.0.1", port=self.port, debug=False, use_reloader=False)
+        self.web_app.run(host="127.0.0.1", port=self.port, debug=False)
 
     def start_app(self):
         """ Start the telemetry application and web app. """

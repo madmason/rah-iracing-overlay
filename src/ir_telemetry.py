@@ -48,13 +48,3 @@ class IRTelemetry:
             'clutch': clutch,
             'gear': gear
         })
-
-    def run(self):
-        """
-        Run the telemetry update loop, checking for connection and sending data at 50 Hz.
-        """
-        while True:
-            self.check_iracing()
-            if self.state.ir_connected:
-                self.retrieve_data()
-            time.sleep(0.02)  # 50 Hz update rate
