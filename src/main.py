@@ -27,7 +27,7 @@ class TelemetryInterface:
         self.root = root
         self.root.title("RAH Telemetry Overlay")
         self.root.geometry("600x300")
-        self.root.configure(bg="#F5F5F5")  # Light background color
+        self.root.configure(bg="#F5F5F5")  
 
         self.web_app = None
         self.telemetry = None
@@ -35,9 +35,8 @@ class TelemetryInterface:
         self.webapp_thread = None
         self.is_running = False
         self.port = 8085
-        self.frequency = 50  # Default frequency 50 Hz
+        self.frequency = 50 
 
-        # Use Roboto font with the same size for all elements
         self.font_style = ("Roboto", 12)
         self.root.protocol("WM_DELETE_WINDOW", self.on_closing)
 
@@ -130,7 +129,7 @@ class TelemetryInterface:
             img = Image.open(io.BytesIO(img_data))
         except Exception as e:
             print(f"Error opening image {full_icon_path}: {e}")
-            return  # or handle the error as needed
+            return 
 
         aspect_ratio = img.width / img.height
         new_width = int(50 * aspect_ratio)
@@ -143,7 +142,7 @@ class TelemetryInterface:
         icon = ImageTk.PhotoImage(img_resized)
 
         label = tk.Label(parent, image=icon, cursor="hand2", bg="#F5F5F5")
-        label.image = icon  # Keep a reference to the image to prevent garbage collection
+        label.image = icon 
         label.pack(side="left", padx=10)
         label.bind("<Button-1>", lambda e: webbrowser.open(url))
 
