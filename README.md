@@ -5,7 +5,7 @@
 I just didn't wanted to pay for some overlays subcriptions to have the overlay that I actually wanted, so why not trying? I hope you feel the same, this is free of course ;)
 
 <p align="center">
- ![](https://github.com/user-attachments/assets/52645a10-d5ce-4283-9efb-2f37f374cef3)
+  <img src=https://github.com/RaulArcos/iracing-input-telemetry-overlay/blob/main/images/input-telemetry-gif.gif>
 </p>
 
 ## **Features**
@@ -57,7 +57,7 @@ pyinstaller RAH_Telemetry_Overlay.spec
 Just open the .exe file like a normal windows program, you will be welcomed by an easy interace to change the port (just in case you are using other overlay applications on the same port) and the framerate it should update.
 
 <p align="center">
-![Captura de pantalla 2024-10-20 021323](https://github.com/user-attachments/assets/77a22083-824e-4408-a64e-4774321cbfa0)
+  <img src=https://github.com/user-attachments/assets/77a22083-824e-4408-a64e-4774321cbfa0>
 </p>
 
 Click start, on OBS, for example, add a web source and introduce the following URL: http://127.0.0.1:{your-selected-port}/input-telemetry
