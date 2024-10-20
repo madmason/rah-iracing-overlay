@@ -2,6 +2,12 @@
 
 **iRacing Input Telemetry Overlay** is an open-source Python-based project that provides real-time telemetry from iRacing, displaying input data through a web interface so you can put it on programs like OBS.
 
+I just didn't wanted to pay for some overlays subcriptions to have the overlay that I actually wanted, so why not trying? I hope you feel the same, this is free of course ;)
+
+<p align="center">
+  ![TelemetryINputiRacingWorking](https://github.com/user-attachments/assets/aaff8e97-81c0-44bd-a7e0-57eb001da54e)
+</p>
+
 ## **Features**
 
 - Real-time telemetry data from iRacing.
@@ -49,6 +55,10 @@ pyinstaller RAH_Telemetry_Overlay.spec
 ## **Usage**
 
 Just open the .exe file like a normal windows program, you will be welcomed by an easy interace to change the port (just in case you are using other overlay applications on the same port) and the framerate it should update.
+
+<p align="center">
+![Captura de pantalla 2024-10-20 021323](https://github.com/user-attachments/assets/77a22083-824e-4408-a64e-4774321cbfa0)
+</p>
 
 Click start, on OBS, for example, add a web source and introduce the following URL: http://127.0.0.1:{your-selected-port}/input-telemetry
 
