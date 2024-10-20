@@ -90,6 +90,10 @@ class TelemetryInterface:
         self.start_button.config(command=self.start_app)
         self.start_button.pack(pady=10)
 
+        self.url_label = tk.Label(left_frame, text="", fg="blue", bg="#F5F5F5", font=self.font_style, cursor="hand2")
+        self.url_label.pack(pady=10)
+        self.url_label.bind("<Button-1>", lambda e: webbrowser.open(self.url_label.cget("text")))
+
         right_frame = tk.Frame(main_frame, bg="#F5F5F5", padx=10, pady=0)
         right_frame.pack(side="right", padx=10, pady=0, fill="both", expand=True)
 
@@ -184,6 +188,9 @@ class TelemetryInterface:
             self.telemetry_thread.start()
 
             self.update_status("running")
+            
+            self.url_label.config(text=f"http://127.0.0.1:{self.port}/input-telemetry")
+            self.url_label.config(fg="blue")
 
 
 if __name__ == '__main__':

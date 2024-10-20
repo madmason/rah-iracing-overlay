@@ -55,7 +55,7 @@ exe = EXE(
     a.zipfiles,
     a.datas,
     [],
-    name='RAH Telemetry Overlay',
+    name='RAH iRacing Overlay',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
