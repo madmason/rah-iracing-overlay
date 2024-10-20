@@ -5,7 +5,7 @@
 I just didn't wanted to pay for some overlays subcriptions to have the overlay that I actually wanted, so why not trying? I hope you feel the same, this is free of course ;)
 
 <p align="center">
-  ![TelemetryINputiRacingWorking](https://github.com/user-attachments/assets/aaff8e97-81c0-44bd-a7e0-57eb001da54e)
+ ![](https://github.com/user-attachments/assets/52645a10-d5ce-4283-9efb-2f37f374cef3)
 </p>
 
 ## **Features**
