@@ -8,13 +8,6 @@ I just didn't wanted to pay for some overlays subcriptions to have the overlay t
   <img src=https://github.com/RaulArcos/iracing-input-telemetry-overlay/blob/main/images/input-telemetry-gif.gif>
 </p>
 
-## **Features**
-
-- Real-time telemetry data from iRacing.
-- Web-based overlay for input telemetry visualization.
-- Easily extendable for additional telemetry data points.
-- Flask web server with SocketIO for real-time communication.
-
 ## **Table of Contents**
 
 - [Compilation](#compilation)
