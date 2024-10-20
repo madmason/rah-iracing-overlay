@@ -36,7 +36,7 @@ Before compiling, make sure you have the following installed:
 ### **1. Clone the Repository**
 
 ```bash
-git clone [https://github.com/your-username/iracing-input-telemetry-overlay.git](https://github.com/RaulArcos/iracing-input-telemetry-overlay.git)
+git clone https://github.com/RaulArcos/rah-iracing-overlay.git
 cd iracing-input-telemetry-overlay
 ```
 
