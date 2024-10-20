@@ -8,13 +8,13 @@ class dummyOut:
 sys.stderr = dummyOut()
 
 import os
-from PIL import Image, ImageTk  # Use PIL for image resizing while keeping aspect ratio
+from PIL import Image, ImageTk 
 import tkinter as tk
 import threading
 from ir_telemetry import IRTelemetry
 from ir_webapp import IRWebApp
 import time
-import webbrowser  # For opening the URLs in a browser
+import webbrowser
 import pkgutil
 import logging
 import multiprocessing
