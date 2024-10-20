@@ -8,13 +8,6 @@ I just didn't wanted to pay for some overlays subcriptions to have the overlay t
   <img src=https://github.com/RaulArcos/iracing-input-telemetry-overlay/blob/main/images/input-telemetry-gif.gif>
 </p>
 
-## **Features**
-
-- Real-time telemetry data from iRacing.
-- Web-based overlay for input telemetry visualization.
-- Easily extendable for additional telemetry data points.
-- Flask web server with SocketIO for real-time communication.
-
 ## **Table of Contents**
 
 - [Compilation](#compilation)
@@ -36,7 +29,7 @@ Before compiling, make sure you have the following installed:
 ### **1. Clone the Repository**
 
 ```bash
-git clone [https://github.com/your-username/iracing-input-telemetry-overlay.git](https://github.com/RaulArcos/iracing-input-telemetry-overlay.git)
+git clone https://github.com/RaulArcos/rah-iracing-overlay.git
 cd iracing-input-telemetry-overlay
 ```
 
