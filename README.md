@@ -42,7 +42,7 @@ pip install -r requirements.txt
 ### **3. Compile into an EXE file**
 
 ```bash
-pyinstaller RAH_Telemetry_Overlay.spec
+pyinstaller src/RAH_Telemetry_Overlay.spec
 ```
 
 ## **Usage**
