@@ -39,12 +39,18 @@ class IRTelemetry:
         throttle = self.ir['Throttle']
         clutch = 1 - self.ir['Clutch']  # Invert clutch value
         gear = self.ir['Gear']
-        
+        car_left_right = self.ir['CarLeftRight']
+        car_dist_ahead = self.ir['CarDistAhead']
+        car_dist_behind = self.ir['CarDistBehind']
+
         self.socketio.emit('telemetry_update', {
             'speed': speed,
             'steering_wheel_angle': steering_wheel_angle,
             'brake': brake,
             'throttle': throttle,
             'clutch': clutch,
-            'gear': gear
+            'gear': gear,
+            'car_left_right': car_left_right,
+            'car_dist_ahead': car_dist_ahead,
+            'car_dist_behind': car_dist_behind
         })

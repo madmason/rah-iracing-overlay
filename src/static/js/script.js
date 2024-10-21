@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById('brake-fill').style.height = `${data.brake * 100}%`;
         document.getElementById('throttle-fill').style.height = `${data.throttle * 100}%`;
         document.getElementById('clutch-fill').style.height = `${data.clutch * 100}%`;
+        document.getElementById('leftright').textContent=`leftright: ${data.car_left_right}`
 
         let steeringAngleRadians = data.steering_wheel_angle;
         let steeringAngleDegrees = -steeringAngleRadians * (180 / Math.PI);
